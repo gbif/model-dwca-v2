@@ -1,0 +1,53 @@
+verbatimLabel	preferredLabel
+Agent	Agent
+Agent Role	Agent Role
+AgentRole	Agent Role
+Assertion	Assertion
+Chronometric Age	Chronometric Age
+ChronometricAge	Chronometric Age
+Citation	Citation
+Collection	Collection
+Event	Event
+Genetic Sequence Genetic Sequence
+GeneticSequence Genetic Sequence
+Geological Context	Geological Context
+GeologicalContext	Geological Context
+Identification	Identification
+Identifier	Identifier
+Material Entity	Material Entity
+MaterialEntity	Material Entity
+Material	Material Entity
+Media	Media
+Occurrence	Occurrence
+Organism	Organism
+Organism Occurrence	Occurrence
+OrganismOccurrence	Occurrence
+Organism Interaction	Organism Interaction
+OrganismInteraction	Organism Interaction
+Relationship	Resource Relationship
+Resource Relationship	Resource Relationship
+ResourceRelationship	Resource Relationship
+Survey	Survey
+Taxon	Taxon
+AGENT	Agent
+AGENT_ROLE	Agent Role
+ASSERTION	Assertion
+CHRONOMETRIC_AGE	Chronometric Age
+CITATION	Citation
+COLLECTION	Collection
+EVENT	Event
+GENETIC_SEQUENCE Genetic Sequence
+GEOLOGICAL_CONTEXT	Geological Context
+IDENTIFICATION	Identification
+IDENTIFIER	Identifier
+MATERIAL_ENTITY	Material Entity
+MATERIAL	Material Entity
+MEDIA	Media
+OCCURRENCE	Occurrence
+ORGANISM	Organism
+ORGANISM_OCCURRENCE	Occurrence
+ORGANISM_INTERACTION	Organism Interaction
+RELATIONSHIP	Resource Relationship
+RESOURCE_RELATIONSHIP	Resource Relationship
+SURVEY	Survey
+TAXON	Taxon

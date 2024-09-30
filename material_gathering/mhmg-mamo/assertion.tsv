@@ -1,0 +1,61 @@
+assertionID	assertionTargetID	assertionTargetType	assertionType	assertionMadeDate	assertionValue	assertionValueNumeric	assertionUnit	assertionBy	assertionByID
+id.gbif.ch/1303788948	id.gbif.ch/1542933166	Genetic Sequence	dwc:associatedReferences	2023-03-07	https://doi.org/10.3161/001.005.0201			not reported	
+id.gbif.ch/1461105986	id.gbif.ch/1542933166	Genetic Sequence	dwc:associatedSequences	2023-03-07	AF513749				
+id.gbif.ch/2119862931	id.gbif.ch/1542933166	Genetic Sequence	mixs:seq_meth	2023-03-07	Sanger			not reported	
+id.gbif.ch/408946406	id.gbif.ch/1542933166	Genetic Sequence	mixs:target_gene	2023-03-07	cytb			not reported	
+id.gbif.ch/2135741061	id.gbif.ch/2289599522	Genetic Sequence	dwc:associatedReferences	2023-03-07	http://www.jstor.org/stable/1383681			not reported	
+id.gbif.ch/927967321	id.gbif.ch/2289599522	Genetic Sequence	dwc:associatedSequences	2023-03-07	AF326089				
+id.gbif.ch/3468384685	id.gbif.ch/2289599522	Genetic Sequence	mixs:pcr_primer_forward	2023-03-07	AAAGCAAARCACTGAAAATG				
+id.gbif.ch/3512073717	id.gbif.ch/2289599522	Genetic Sequence	mixs:pcr_primer_name_forward	2023-03-07	12c				
+id.gbif.ch/1640509030	id.gbif.ch/2289599522	Genetic Sequence	mixs:pcr_primer_name_reverse	2023-03-07	12g				
+id.gbif.ch/880207998	id.gbif.ch/2289599522	Genetic Sequence	mixs:pcr_primer_reverse	2023-03-07	TTTCATCTTTTCCTTGCGGTAC				
+id.gbif.ch/2719771610	id.gbif.ch/2289599522	Genetic Sequence	mixs:pcr_primers	2023-03-07	12c|12g			not reported	
+id.gbif.ch/2819377015	id.gbif.ch/2289599522	Genetic Sequence	mixs:seq_meth	2023-03-07	Sanger			not reported	
+id.gbif.ch/2008358301	id.gbif.ch/2289599522	Genetic Sequence	mixs:target_gene	2023-03-07	16S			not reported	
+id.gbif.ch/3032504735	id.gbif.ch/4013798033	Genetic Sequence	dwc:associatedReferences	2023-03-07	http://www.jstor.org/stable/1383686			not reported	
+id.gbif.ch/2800881452	id.gbif.ch/4013798033	Genetic Sequence	dwc:associatedSequences	2023-03-07	AF326089				
+id.gbif.ch/3652380849	id.gbif.ch/4013798033	Genetic Sequence	mixs:pcr_primer_forward	2023-03-07	CYGGAAAGTGTGCTTGGA				
+id.gbif.ch/2605801583	id.gbif.ch/4013798033	Genetic Sequence	mixs:pcr_primer_name_forward	2023-03-07	12h				
+id.gbif.ch/3400385615	id.gbif.ch/4013798033	Genetic Sequence	mixs:pcr_primer_name_reverse	2023-03-07	16t				
+id.gbif.ch/3137453154	id.gbif.ch/4013798033	Genetic Sequence	mixs:pcr_primer_reverse	2023-03-07	GCAATTACCGRRCTCTGCCA				
+id.gbif.ch/3491071705	id.gbif.ch/4013798033	Genetic Sequence	mixs:pcr_primers	2023-03-07	12h|16t			not reported	
+id.gbif.ch/2571504779	id.gbif.ch/4013798033	Genetic Sequence	mixs:seq_meth	2023-03-07	Sanger			not reported	
+id.gbif.ch/3957006396	id.gbif.ch/4013798033	Genetic Sequence	mixs:target_gene	2023-03-07	12S			not reported	
+id.gbif.ch/3830026993	id.gbif.ch/1451071954	Genetic Sequence	dwc:associatedReferences	2023-03-07	https://doi.org/10.1644/09-MAMM-A-192.1			not reported	
+id.gbif.ch/578305886	id.gbif.ch/1451071954	Genetic Sequence	dwc:associatedSequences	2023-03-07	GU328124				
+id.gbif.ch/3844115597	id.gbif.ch/1451071954	Genetic Sequence	mixs:seq_meth	2023-03-07	Sanger			not reported	
+id.gbif.ch/3121230953	id.gbif.ch/1451071954	Genetic Sequence	mixs:target_gene	2023-03-07	APOB			not reported	
+id.gbif.ch/1252667470	id.gbif.ch/2678867694	Genetic Sequence	dwc:associatedReferences	2023-03-07	https://doi.org/10.1644/09-MAMM-A-192.1			not reported	
+id.gbif.ch/3203241763	id.gbif.ch/2678867694	Genetic Sequence	dwc:associatedSequences	2023-03-07	GU328213				
+id.gbif.ch/357563915	id.gbif.ch/2678867694	Genetic Sequence	mixs:seq_meth	2023-03-07	Sanger			not reported	
+id.gbif.ch/2340645495	id.gbif.ch/2678867694	Genetic Sequence	mixs:target_gene	2023-03-07	DMPI			not reported	
+id.gbif.ch/2696436624	id.gbif.ch/2239094733	Genetic Sequence	dwc:associatedReferences	2023-03-07	https://doi.org/10.1644/09-MAMM-A-192.1			not reported	
+id.gbif.ch/497206734	id.gbif.ch/2239094733	Genetic Sequence	dwc:associatedSequences	2023-03-07	GU328049				
+id.gbif.ch/740081971	id.gbif.ch/2239094733	Genetic Sequence	mixs:seq_meth	2023-03-07	Sanger			not reported	
+id.gbif.ch/1533810872	id.gbif.ch/2239094733	Genetic Sequence	mixs:target_gene	2023-03-07	RAG2			not reported	
+id.gbif.ch/916313826	id.gbif.ch/2063709026	Genetic Sequence	dwc:associatedReferences	2023-03-07	https://doi.org/10.1644/09-MAMM-A-192.1			not reported	
+id.gbif.ch/2073244537	id.gbif.ch/2063709026	Genetic Sequence	dwc:associatedSequences	2023-03-07	GU328288				
+id.gbif.ch/890865479	id.gbif.ch/2063709026	Genetic Sequence	mixs:seq_meth	2023-03-07	Sanger			not reported	
+id.gbif.ch/2611301500	id.gbif.ch/2063709026	Genetic Sequence	mixs:target_gene	2023-03-07	PRKC12			not reported	
+id.gbif.ch/1599321580	id.gbif.ch/2648123790	Genetic Sequence	dwc:associatedReferences	2023-03-07	https://doi.org/10.1644/09-MAMM-A-192.1			not reported	
+id.gbif.ch/3421584574	id.gbif.ch/2648123790	Genetic Sequence	dwc:associatedSequences	2023-03-07	GU328363				
+id.gbif.ch/3497550794	id.gbif.ch/2648123790	Genetic Sequence	mixs:seq_meth	2023-03-07	Sanger			not reported	
+id.gbif.ch/2807110756	id.gbif.ch/2648123790	Genetic Sequence	mixs:target_gene	2023-03-07	STAT5A			not reported	
+id.gbif.ch/3969802673	id.gbif.ch/242540810	Genetic Sequence	dwc:associatedReferences	2023-03-07	https://doi.org/10.1644/09-MAMM-A-192.1			not reported	
+id.gbif.ch/3170921974	id.gbif.ch/242540810	Genetic Sequence	dwc:associatedSequences	2023-03-07	GU328431				
+id.gbif.ch/1831176274	id.gbif.ch/242540810	Genetic Sequence	mixs:seq_meth	2023-03-07	Sanger			not reported	
+id.gbif.ch/352605761	id.gbif.ch/242540810	Genetic Sequence	mixs:target_gene	2023-03-07	THY			not reported	
+id.gbif.ch/685166253	id.gbif.ch/1831187705	Genetic Sequence	mixs:target_gene	2021-11-29	CoI-5P			not reported	
+id.gbif.ch/2785212851	id.gbif.ch/1441102842	Genetic Sequence	dwc:associatedReferences	2022-12-21	https://doi.org/10.1371/journal.pone.0134881			not reported	
+id.gbif.ch/2238220540	id.gbif.ch/1441102842	Genetic Sequence	dwc:associatedSequences	2022-12-21	KT613217				
+id.gbif.ch/1351018632	id.gbif.ch/1441102842	Genetic Sequence	mixs:pcr_primer_forward	2022-12-21	TTCTCAACCAACCACAARGAYATYGG				
+id.gbif.ch/2553087368	id.gbif.ch/1441102842	Genetic Sequence	mixs:pcr_primer_name_forward	2022-12-21	VF1d				
+id.gbif.ch/1739222193	id.gbif.ch/1441102842	Genetic Sequence	mixs:pcr_primer_name_reverse	2022-12-21	VR1d				
+id.gbif.ch/1039003259	id.gbif.ch/1441102842	Genetic Sequence	mixs:pcr_primer_reverse	2022-12-21	TAGACTTCTGGGTGGCCRAARAAYCA				
+id.gbif.ch/111408774	id.gbif.ch/1441102842	Genetic Sequence	mixs:pcr_primers	2022-12-21	VF1d|VR1d			not reported	
+id.gbif.ch/4275513675	id.gbif.ch/1441102842	Genetic Sequence	mixs:seq_meth	2022-12-21	Sanger			not reported	
+id.gbif.ch/2593595643	id.gbif.ch/1441102842	Genetic Sequence	mixs:target_gene	2022-12-21	CoI-5P			not reported	
+id.gbif.ch/695866095	id.gbif.ch/3820064325	Occurrence	head-body length			59	mm	Manuel Ruedi	id.gbif.ch/411903002
+id.gbif.ch/3200615426	id.gbif.ch/3820064325	Occurrence	rear foot length			12	mm	Manuel Ruedi	id.gbif.ch/411903002
+id.gbif.ch/1994079480	id.gbif.ch/3820064325	Occurrence	tail length			46	mm	Manuel Ruedi	id.gbif.ch/411903002
+id.gbif.ch/1829097051	id.gbif.ch/3820064325	Occurrence	weight			10.6	g	Manuel Ruedi	id.gbif.ch/411903002

@@ -1,0 +1,46 @@
+verbatimLabel	preferredLabel
+managed	managed
+captive	captive (category B1)
+category B1	captive (category B1)
+cultivated	cultivated (category B2)
+category B2	cultivated (category B2)
+released	released (category B3)
+category B3	released (category B3)
+unestablished	unestablished
+failing	failing (category C0)
+category C0	failing (category C0)
+casual	casual (category C1)
+category C1	casual (category C1)
+naturalized	naturalized
+naturalised	naturalized
+reproducing	reproducing (category C2)
+category C2	reproducing (category C2)
+established	established (category C3)
+category C3	established (category C3)
+spreading	spreading
+widespread invasive	widespread invasive (category E)
+category E	widespread invasive (category E)
+colonising	colonising (category D1)
+category D1	colonising (category D1)
+colonizing	colonising (category D1)
+invasive	invasive (category D2)
+category D2	invasive (category D2)
+native	native (category A)
+category A	native (category A)
+MANAGED	managed
+CAPTIVE	captive (category B1)
+CULTIVATED	cultivated (category B2)
+RELEASED	released (category B3)
+UNESTABLISHED	unestablished
+FAILING	failing (category C0)
+CASUAL	casual (category C1)
+NATURALIZED	naturalized
+NATURALISED	naturalized
+REPRODUCING	reproducing (category C2)
+ESTABLISHED	established (category C3)
+SPREADING	spreading
+WIDESPREAD_INVASIVE	widespread invasive (category E)
+COLONISING	colonising (category D1)
+COLONIZING	colonising (category D1)
+INVASIVE	invasive (category D2)
+NATIVE	native (category A)

@@ -1,0 +1,24 @@
+verbatimLabel	preferredLabel
+native (indigenous)	native (indigenous)
+native: reintroduced	native: reintroduced
+introduced (alien, exotic, non-native, nonindigenous)	introduced (alien, exotic, non-native, nonindigenous)
+introduced: assisted colonisation	introduced: assisted colonisation
+vagrant (casual)	vagrant (casual)
+uncertain (unknown, cryptogenic)	uncertain (unknown, cryptogenic)
+indigenous	native (indigenous)
+alien	introduced (alien, exotic, non-native, nonindigenous)
+exotic	introduced (alien, exotic, non-native, nonindigenous)
+non-native	introduced (alien, exotic, non-native, nonindigenous)
+nonindigenous	introduced (alien, exotic, non-native, nonindigenous)
+non-indigenous	introduced (alien, exotic, non-native, nonindigenous)
+vagrant	vagrant (casual)
+casual	vagrant (casual)
+uncertain	uncertain (unknown, cryptogenic)
+unknown	uncertain (unknown, cryptogenic)
+cryptogenic	uncertain (unknown, cryptogenic)
+NATIVE_INDIGENOUS	native (indigenous)
+NATIVE_REINTRODUCED	native: reintroduced
+INTRODUCED	introduced (alien, exotic, non-native, nonindigenous)
+INTRODUCED_ASSISTED_RECOLONISATION	introduced: assisted colonisation
+VAGRANT	vagrant (casual)
+UNCERTAIN	uncertain (unknown, cryptogenic)

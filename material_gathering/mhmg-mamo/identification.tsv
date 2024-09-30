@@ -1,0 +1,11 @@
+identificationID	identificationBasedOnMaterialEntityID	identificationType	taxonFormula	typeStatus	identifiedBy	identifiedByID	identificationRemarks	verbatimIdentification	taxonID	kingdom	scientificName	taxonRank
+id.gbif.ch/2740175633	id.gbif.ch/989939123	Morphological	A		Manuel Ruedi	id.gbif.ch/411903002		"Pattonomys semivillosus (I. Geoffroy, 1838)"		Animalia	"Pattonomys semivillosus (I. Geoffroy, 1838)"	species
+id.gbif.ch/1988199675	id.gbif.ch/2281451594	Morphological	A					"Myotis nattereri nattereri (Kuhl, 1817)"		Animalia	"Myotis nattereri nattereri (Kuhl, 1817)"	subspecies
+id.gbif.ch/2430905717	id.gbif.ch/2062472674	Morphological	A		Manuel Ruedi	id.gbif.ch/411903002		"Barbastella barbastellus (Schreber, 1774)"	id.gbif.ch/2185325625	Animalia	"Barbastella barbastellus (Schreber, 1774)"	species
+id.gbif.ch/4097053279	id.gbif.ch/397850255	Morphological	A					"Sorex coronatus Millet, 1828"	id.gbif.ch/490682469	Animalia	"Sorex coronatus Millet, 1828"	species
+id.gbif.ch/3912853806	id.gbif.ch/331991340	Morphological	A					"Rhinolophus namuli Curran, Kopp, Ruedi & Bayliss, 2022"		Animalia	"Rhinolophus namuli Curran, Kopp, Ruedi & Bayliss, 2022"	species
+id.gbif.ch/3114826612	id.gbif.ch/331991340	Morphological	A	Holotype			"Curran M, Kopp M, Ruedi M, Bayliss J (2022) A New Species of Horseshoe Bat (Chiroptera: Rhinolophidae) from Mount Namuli, Mozambique. Acta Chiropterologica 24(1), 19-40, (18 August 2022). https://doi.org/10.3161/15081109ACC2022.24.1.002"	Rhinolophus namuli		Animalia	Rhinolophus namuli	species
+id.gbif.ch/2939634530	id.gbif.ch/4109704260	Morphological	A					"Pipistrellus kuhlii (Kuhl, 1817)"	id.gbif.ch/676564291	Animalia	"Pipistrellus kuhlii (Kuhl, 1817)"	species
+id.gbif.ch/2126639150	id.gbif.ch/2690550298	Morphological	A					"Neomys fodiens (Pennant, 1771)"	id.gbif.ch/2563949255	Animalia	"Neomys fodiens (Pennant, 1771)"	species
+id.gbif.ch/3526689756	id.gbif.ch/3151586005	Morphological	A					"Petaurista philippensis oral (Tickell, 1842)"		Animalia	"Petaurista philippensis oral (Tickell, 1842)"	subspecies
+id.gbif.ch/1267512849	id.gbif.ch/3445821799	Morphological	A					"Chlorocebus sabaeus callitrichus (I. Geoffroy, 1851)"		Animalia	"Chlorocebus sabaeus callitrichus (I. Geoffroy, 1851)"	subspecies

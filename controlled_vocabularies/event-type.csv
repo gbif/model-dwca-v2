@@ -1,0 +1,18 @@
+verbatimLabel	preferredLabel
+SURVEY	Survey
+OCCURRENCE	Occurrence
+ORGANISM_INTERACTION	Organism Interaction
+MATERIAL_GATHERING	Material Gathering
+Survey	Survey
+Occurrence	Occurrence
+Organism Interaction	Organism Interaction
+OrganismInteraction	Organism Interaction
+Material Gathering	Material Gathering
+MaterialGathering	Material Gathering
+OBSERVATION	Observation
+HUMAN_OBSERVATION	Human Observation
+HUMANOBSERVATION	Human Observation
+Human Observation	Human Observation
+MACHINE_OBSERVATION	Human Observation
+MACHINEOBSERVATION	Human Observation
+MAchine Observation	Human Observation

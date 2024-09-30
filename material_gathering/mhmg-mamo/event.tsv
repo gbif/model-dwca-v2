@@ -1,0 +1,10 @@
+eventID	eventType	eventDate	year	month	day	verbatimLocality	verbatimLatitude	verbatimLongitude	decimalLatitude	decimalLongitude
+id.gbif.ch/3269584528	Occurrence	1905	1905			Conakry				
+id.gbif.ch/412963505	Occurrence	1951-03-03	1951	3	3	"Laichingen, Tiefenhöhle"	"48,478639"	"9,69392"	48.478639	9.69392
+id.gbif.ch/1044215467	Occurrence	1965-04-11	1965	4	11	Soplaviento				
+id.gbif.ch/3820064325	Occurrence	1970-04-13	1970	4	13	"Seleute, Monnat"	"47,3720499033387"	"7,12088225097699"	47.3720499033387	7.12088225097699
+id.gbif.ch/925594731	Occurrence	1989-07-29	1989	7	29	Martigny				
+id.gbif.ch/1094866442	Occurrence	2012-06-26	2012	6	26	Zürich				
+id.gbif.ch/4261637213	Occurrence	2015-08-05	2015	8	5	"Versoix, Réserve des Douves"	"46,293987"	"6,135221"	46.293987	6.135221
+id.gbif.ch/1930991717	Occurrence					Iles de la Sonde				
+id.gbif.ch/1698496612	Occurrence					"Mt. Namuli, NL Ukalini Forest"	"-15,36925"	"37,061361"	-15.36925	37.061361
