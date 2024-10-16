@@ -1,11 +1,13 @@
 # Data Publishing using Darwin Core Archives Version 2 (DwCA_v2)
-This repository provides examples of datasets structured to take advantage of the expanded capabilities of Darwin Core Archives Version 2. Datasets are divided into categories of the datasets based on the basic types of Events they document (Observations, MaterialGatherings, eDNA, OrganismInteractions, and Biotic Surveys) and each dataset occupies a directory within the most appropriate type of dataset.
+This repository provides examples of datasets structured to take advantage of the expanded capabilities of Darwin Core Archives Version 2. There is a folder for each of the types of datasets (material_gathering, observation, organism-interaction, and survey) for which a mapping from the original structure to the DwCA_v2 model has been tested.
 
-A PostgreSQL 'Extended Occurrence' database schema ([schema.sql](./gbif/schema.sql)) provides a structure within which to test use cases supported by the Extended Occurrence Data Publishing Model. 
+The postgreSQL [database schema](./gbif/dwca_v2_schema.sql) provides the structure within which to test use cases supported by the DwCA_v2. 
 
-Each example dataset includes TSV files of data and a script to load these data into a Extended Occurrence PostgreSQL database.
+Within each dataset type folder is a folder for each separate dataset. Within the dataset folders are scripts and instructions to create a copy of the database, load the input files (from the ./input_data folder), transform the data into the DwCa_v2_ structure, and write the output files (to the ./output_data folder).
 
-A [directory](./controlled_vocabularies) with suggestions for preferred labels for concepts that are recommended to use controlled vocabularies is also provided. Some fields whose values are strictly controlled have TYPE ENUMS defined in [schema.sql](./gbif/schema.sql)] . For example, the term dwc:occurrenceStatus MUST be populated with either 'Present' or 'Absent'.
+The repository contains a controlled_vocabularies folder where real-world values are mapped to preferred labels that match pattern for preferred labels of Darwin Core controlled vocabularies. 
+
+Some fields whose values are strictly controlled have TYPE ENUMS defined in this database schema. For example, the term occurrence.occurrenceStatus MUST be populated with either 'Present' or 'Absent'.
 
 ```
 CREATE TYPE OCCURRENCE_STATUS AS ENUM (
@@ -13,11 +15,3 @@ CREATE TYPE OCCURRENCE_STATUS AS ENUM (
   'Absent'
 );
 ```
-
-The basic process to test the loading of a dataset is to 
-1) From the ./gbif directory, create an instance of the database from schema.sql if the database does not yet exist
-  `createdb extended_occurrence && psql extended_occurrence -f schema.sql`
-2) From the ./gbif directory, drop and recreate the database from schema.sql if the database needs to be reinitiated with no data
-  `dropdb extended_occurrence && createdb extended_occurrence && psql extended_occurrence -f schema.sql`
-3) From a dataset directory, load the TSV files into the database
-  `psql extended_occurrence -f load-mhmg-mamo.sql` (Example)

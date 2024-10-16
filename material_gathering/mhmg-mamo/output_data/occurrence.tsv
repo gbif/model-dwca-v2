@@ -1,0 +1,10 @@
+occurrence_id	organism_quantity	organism_quantity_type	organism_quantity_type_iri	organism_quantity_type_vocabulary	sex	life_stage	reproductive_condition	caste	behavior	vitality	establishment_means	degree_of_establishment	pathway	occurrence_status	occurrence_remarks	organism_id	organism_scope	organism_scope_iri	organism_scope_vocabulary	organism_name	organism_remarks
+id.gbif.ch/1044215467	1	individual			female									Present		id.gbif.ch/989939123	Multicellular Organism				
+id.gbif.ch/412963505	1	individual			female	adult								Present		id.gbif.ch/2281451594	Multicellular Organism				
+id.gbif.ch/1698496612	1	individual				adult								Present		id.gbif.ch/331991340	Multicellular Organism				
+id.gbif.ch/1094866442	1	individual				adult								Present		id.gbif.ch/4109704260	Multicellular Organism				
+id.gbif.ch/1930991717	1	individual				adult								Present		id.gbif.ch/3151586005	Multicellular Organism				
+id.gbif.ch/3269584528	1	individual												Present		id.gbif.ch/3445821799	Multicellular Organism				
+id.gbif.ch/925594731	1	individual			female									Present		id.gbif.ch/2062472674	Multicellular Organism				
+id.gbif.ch/3820064325	1	individual				adult								Present		id.gbif.ch/397850255	Multicellular Organism				
+id.gbif.ch/4261637213	1	individual				adult								Present		id.gbif.ch/2690550298	Multicellular Organism				

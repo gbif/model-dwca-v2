@@ -21,6 +21,7 @@ CREATE TYPE COMMON_TARGETS AS ENUM (
   'Citation',
   'Media',
   'Identifier',
+  'Protocol',
   'Resource Relationship'
 );
 
@@ -32,6 +33,12 @@ CREATE TYPE INCLUDE_OR_EXCLUDE AS ENUM (
 CREATE TYPE OCCURRENCE_STATUS AS ENUM (
   'Present',
   'Absent'
+);
+
+CREATE TYPE TAXON_COMPLETENESS_REPORTED AS ENUM (
+  'not reported',
+  'reported complete',
+  'reported incomplete'
 );
 
 -- Event (https://dwc.tdwg.org/terms/#event)
@@ -66,9 +73,10 @@ CREATE TABLE event (
   verbatim_srs TEXT,
   georeference_verification_status TEXT,
   habitat TEXT,
+  protocol_id TEXT,
   protocol_name TEXT,
   protocol_description TEXT,
-  protocol_iri TEXT,
+  protocol_citation TEXT,
   sample_size_value TEXT,
   sample_size_unit TEXT,
   event_effort TEXT,
@@ -99,7 +107,7 @@ CREATE TABLE event (
   decimal_latitude NUMERIC CHECK (decimal_latitude BETWEEN -90 AND 90),
   decimal_longitude NUMERIC CHECK (decimal_longitude BETWEEN -180 AND 180),
   geodetic_datum TEXT,
-  coordinate_uncertainty_in_meters NUMERIC CHECK (coordinate_uncertainty_in_meters > 0 AND coordinate_uncertainty_in_meters <= 20037509),
+  coordinate_uncertainty_in_meters NUMERIC CHECK (coordinate_uncertainty_in_meters > 0  AND coordinate_uncertainty_in_meters <= 20037509),
   coordinate_precision NUMERIC CHECK (coordinate_precision BETWEEN 0 AND 90),
   point_radius_spatial_fit NUMERIC CHECK (point_radius_spatial_fit = 0 OR point_radius_spatial_fit >= 1),
   footprint_wkt TEXT,
@@ -108,6 +116,7 @@ CREATE TABLE event (
   georeferenced_by TEXT,
   georeferenced_by_id TEXT,
   georeferenced_date TEXT,
+  georeference_protocol_id TEXT,
   georeference_protocol TEXT,
   georeference_sources TEXT,
   georeference_remarks TEXT,
@@ -115,7 +124,9 @@ CREATE TABLE event (
 );
 CREATE INDEX ON event(parent_event_id);
 CREATE INDEX ON event(recorded_by_id);
+CREATE INDEX ON event(protocol_id);
 CREATE INDEX ON event(georeferenced_by_id);
+CREATE INDEX ON event(georeference_protocol_id);
 
 -- Occurrence (https://dwc.tdwg.org/terms/#occurrence)
 --   Information about a dwc:Organism in a place during some time. A type of dwc:Event.
@@ -159,6 +170,7 @@ CREATE TABLE identification (
   identification_type_iri TEXT,
   identification_type_vocabulary TEXT,
   verbatim_identification TEXT,
+  is_accepted_identification BOOLEAN,
   taxon_formula TEXT DEFAULT 'A' NOT NULL,
   type_status TEXT,
   type_designation_type TEXT,
@@ -201,12 +213,12 @@ CREATE TABLE material (
   material_entity_type TEXT NOT NULL,
   material_entity_type_iri TEXT,
   material_entity_type_vocabulary TEXT,
-  institution_id TEXT, 
   institution_code TEXT,
-  owner_institution_id TEXT,
+  institution_id TEXT, 
   owner_institution_code TEXT,
-  collection_id TEXT,
+  owner_institution_id TEXT,
   collection_code TEXT,
+  collection_id TEXT,
   catalog_number TEXT,
   other_catalog_numbers TEXT,
   record_number TEXT,
@@ -239,8 +251,8 @@ CREATE TABLE collection (
   collection_type TEXT,
   collection_type_iri TEXT,
   collection_type_vocabulary TEXT,
-  institution_id TEXT, 
   institution_code TEXT,
+  institution_id TEXT, 
   collection_name TEXT,
   collection_code TEXT);
 CREATE INDEX ON collection(institution_id);
@@ -270,8 +282,10 @@ CREATE TABLE chronometric_age (
   gathering_event_id TEXT REFERENCES event ON DELETE CASCADE DEFERRABLE,
   verbatim_chronometric_age TEXT,
   chronometric_age_protocol TEXT,
+  chronometric_age_protocol_id TEXT,
   uncalibrated_chronometric_age TEXT,
   chronometric_age_conversion_protocol TEXT,
+  chronometric_age_conversion_protocol_id TEXT,
   earliest_chronometric_age INTEGER,
   earliest_chronometric_age_reference_system TEXT,
   latest_chronometric_age INTEGER,
@@ -288,6 +302,8 @@ CREATE TABLE chronometric_age (
   chronometric_age_remarks TEXT
 );
 CREATE INDEX ON chronometric_age(gathering_event_id);
+CREATE INDEX ON chronometric_age(chronometric_age_protocol_id);
+CREATE INDEX ON chronometric_age(chronometric_age_conversion_protocol_id);
 CREATE INDEX ON chronometric_age(material_dated_id);
 CREATE INDEX ON chronometric_age(chronometric_age_determined_by_id);
 
@@ -297,7 +313,7 @@ CREATE INDEX ON chronometric_age(chronometric_age_determined_by_id);
 
 CREATE TABLE geological_context (
   geological_context_id TEXT PRIMARY KEY,
-  gathering_event_id TEXT REFERENCES event ON DELETE CASCADE DEFERRABLE,
+  event_id TEXT REFERENCES event ON DELETE CASCADE DEFERRABLE,
   earliest_eon_or_lowest_eonothem TEXT,
   latest_eon_or_highest_eonothem TEXT,
   earliest_era_or_lowest_erathem TEXT,
@@ -316,6 +332,7 @@ CREATE TABLE geological_context (
   member TEXT,
   bed TEXT
 );
+CREATE INDEX ON geological_context(event_id);
 
 -- OrganismInteraction 
 --   (subject Organism Occurrence interaction with object Organism Orccurrence,
@@ -359,7 +376,7 @@ CREATE TABLE survey (
   event_duration_unit TEXT,
   target_taxonomic_scope TEXT,
   excluded_taxonomic_scope TEXT,
-  taxon_completeness_reported TEXT,
+  taxon_completeness_reported TAXON_COMPLETENESS_REPORTED DEFAULT 'not reported' NOT NULL,
   taxon_completeness_protocols TEXT,
   is_taxonomic_scope_fully_reported BOOLEAN,
   is_absence_reported BOOLEAN,
@@ -400,11 +417,13 @@ CREATE TABLE survey (
   sampling_performed_by_id TEXT,
   is_sampling_effort_reported BOOLEAN,
   sampling_effort_protocol TEXT,
+  sampling_effort_protocol_id TEXT,
   sampling_effort_value NUMERIC CHECK (sampling_effort_value >= 0),
   sampling_effort_unit TEXT
 );
 CREATE INDEX ON survey(identified_by_id);
 CREATE INDEX ON survey(sampling_performed_by_id);
+CREATE INDEX ON survey(sampling_effort_protocol_id);
 
 -- SurveyTarget
 --   Specifications of characteristics of dwc:Organisms that were included or excluded in a survey.
@@ -433,8 +452,8 @@ CREATE INDEX ON survey_target(survey_id);
 
 CREATE TABLE survey_target_abundance (
   survey_target_id TEXT NOT NULL,
-  observed_taxon_id TEXT,
   observed_taxon TEXT,
+  observed_taxon_id TEXT,
   organism_quantity TEXT,
   organism_quantity_type TEXT,
   organism_quantity_type_iri TEXT,
@@ -500,11 +519,13 @@ CREATE TABLE "assertion" (
   assertion_by TEXT, 
   assertion_by_id TEXT REFERENCES agent ON DELETE CASCADE DEFERRABLE,
   assertion_protocol TEXT,
+  assertion_protocol_id TEXT,
   assertion_citation TEXT,
   assertion_remarks TEXT
 );
 CREATE INDEX ON "assertion"(assertion_by_id);
 CREATE INDEX ON "assertion"(assertion_target_id);
+CREATE INDEX ON "assertion"(assertion_protocol_id);
 
 -- Citation
 --   A specific citation of a thing in a Reference. Citations can be applied to all 
@@ -544,16 +565,22 @@ CREATE TABLE media (
   web_statement TEXT,
   format TEXT,
   rights TEXT,
-  Owner TEXT,
+  owner TEXT,
   source TEXT,
   creator TEXT,
+  creator_id TEXT,
   create_date TEXT,
   modified TEXT,
-  media_language TEXT
+  media_language TEXT,
+  media_subject_category TEXT,
+  media_subject_category_iri TEXT,
+  media_subject_category_vocabulary TEXT,
+  media_description TEXT
 );
 CREATE INDEX ON media(media_target_id);
+CREATE INDEX ON media(creator_id);
 
--- [Class]Identifier
+-- Identifier
 --    An alternate identifier for a thing. Identifiers are separated by the specific 
 --    classes they identify and the type of identifier (e.g., 'DOI', 'ORCID').
 
@@ -568,6 +595,21 @@ CREATE TABLE identifier (
 );
 CREATE INDEX ON identifier(identifier_target_id);
 
+-- Protocol
+--    A method used during an action.
+
+CREATE TABLE protocol (
+  protocol_id TEXT PRIMARY KEY,
+  protocol_target_id TEXT,
+  protocol_target_type COMMON_TARGETS,
+  protocol_type TEXT,
+  protocol_type_iri TEXT,
+  protocol_type_vocabulary TEXT,
+  protocol_name TEXT,
+  protocol_description TEXT,
+  protocol_citation TEXT
+);
+CREATE INDEX ON protocol(protocol_target_id);
 
 -- Relationship
 --   Any direct relationship between two Entities.

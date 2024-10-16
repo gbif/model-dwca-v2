@@ -3,16 +3,19 @@ SURVEY	Survey
 OCCURRENCE	Occurrence
 ORGANISM_INTERACTION	Organism Interaction
 MATERIAL_GATHERING	Material Gathering
+MATERIAL_SAMPLING	Material Sampling
 Survey	Survey
 Occurrence	Occurrence
 Organism Interaction	Organism Interaction
 OrganismInteraction	Organism Interaction
 Material Gathering	Material Gathering
+Material Sampling	Material Sampling
 MaterialGathering	Material Gathering
+MaterialSampling	Material Sampling
 OBSERVATION	Observation
 HUMAN_OBSERVATION	Human Observation
 HUMANOBSERVATION	Human Observation
 Human Observation	Human Observation
 MACHINE_OBSERVATION	Human Observation
 MACHINEOBSERVATION	Human Observation
-MAchine Observation	Human Observation
+Machine Observation	Human Observation

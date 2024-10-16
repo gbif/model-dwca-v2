@@ -24,6 +24,7 @@ Organism Occurrence	Occurrence
 OrganismOccurrence	Occurrence
 Organism Interaction	Organism Interaction
 OrganismInteraction	Organism Interaction
+Protocol	Protocol
 Relationship	Resource Relationship
 Resource Relationship	Resource Relationship
 ResourceRelationship	Resource Relationship
@@ -47,6 +48,7 @@ OCCURRENCE	Occurrence
 ORGANISM	Organism
 ORGANISM_OCCURRENCE	Occurrence
 ORGANISM_INTERACTION	Organism Interaction
+PROTOCOL	Protocol
 RELATIONSHIP	Resource Relationship
 RESOURCE_RELATIONSHIP	Resource Relationship
 SURVEY	Survey
