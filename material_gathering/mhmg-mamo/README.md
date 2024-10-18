@@ -1,6 +1,6 @@
 # Material Gathering Dataset - MHNG Mammal Example
 
-This is dataset is an example of a dataset on gathered Material curated in a museum, with separate parts of the Material and GeneticSequences derived from Material, with multiple Identifications, and with Citations for the Identifications and GeneticSequences.
+This is dataset is an example of gathered Material curated in a museum, with separate parts of the Material and GeneticSequences derived from Material, with multiple Identifications, and with Citations for the Identifications and GeneticSequences.
 
 This example dataset was derived from the original [SwissCollNet](https://github.com/gbif/model-material/tree/master/swisscollnet) example data set shared as part of Unified Model testing for Material. These same data have been copied into this repository as [input data](./input_data).
 
@@ -18,6 +18,6 @@ The process to create the output dataset for the DwCA_v2 publishing model is as 
 ## Load the input data into the database:
 ````psql mhmg_mamo -f load_input_mhmg_mamo.sql```
 
-## Run the script to export the publishing model tables as CSV files:
-```psql mhmg_mamo -f export_mhmg_mamo_csvs.sql```
+## Run the script to export the publishing model tables as TSV files:
+```psql mhmg_mamo -f export_mhmg_mamo_tsvs.sql```
 
