@@ -41,11 +41,11 @@ CREATE TABLE ecoab_occurrences (
     decimalLatitude NUMERIC,
     decimalLongitude NUMERIC,
     minimumElevationInMeters NUMERIC,
-    recordedBy TEXT,
     recordedByID TEXT,
+    recordedBy TEXT,
     taxonID TEXT,
-    identifiedBy TEXT,
     identifiedByID TEXT,
+    identifiedBy TEXT,
     eventDate TEXT,
     sex TEXT
 );

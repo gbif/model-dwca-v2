@@ -39,8 +39,8 @@ INSERT INTO event (
     decimal_latitude, 
     decimal_longitude, 
     minimum_elevation_in_meters, 
-    event_conducted_by_id, 
     event_conducted_by, 
+    event_conducted_by_id, 
     event_date
 )
 (SELECT
@@ -57,8 +57,8 @@ INSERT INTO event (
     decimalLatitude, 
     decimalLongitude, 
     minimumElevationInMeters, 
-    recordedByID, 
     recordedBy, 
+    recordedByID, 
     eventDate 
 FROM ecoab_occurrences a
 JOIN material b ON occurrenceID=material_entity_id
@@ -103,8 +103,8 @@ INSERT INTO event (
     decimal_latitude, 
     decimal_longitude, 
     minimum_elevation_in_meters, 
-    event_conducted_by_id, 
     event_conducted_by, 
+    event_conducted_by_id, 
     event_date
 )
 (SELECT
@@ -121,8 +121,8 @@ INSERT INTO event (
     decimalLatitude, 
     decimalLongitude, 
     minimumElevationInMeters, 
-    recordedByID, 
     recordedBy, 
+    recordedByID, 
     eventDate 
 FROM ecoab_occurrences a
 JOIN temp_organism_interaction b 
@@ -145,8 +145,8 @@ INSERT INTO event (
     decimal_latitude, 
     decimal_longitude, 
     minimum_elevation_in_meters, 
-    event_conducted_by_id, 
     event_conducted_by, 
+    event_conducted_by_id, 
     event_date
 )
 (SELECT
@@ -163,8 +163,8 @@ INSERT INTO event (
     decimalLatitude, 
     decimalLongitude, 
     minimumElevationInMeters, 
-    recordedByID, 
     recordedBy, 
+    recordedByID, 
     eventDate 
 FROM ecoab_occurrences a
 JOIN temp_organism_interaction b 
@@ -193,8 +193,8 @@ INSERT INTO event (
     decimal_latitude, 
     decimal_longitude, 
     minimum_elevation_in_meters, 
-    event_conducted_by_id, 
     event_conducted_by, 
+    event_conducted_by_id, 
     event_date
 )
 (SELECT
@@ -211,8 +211,8 @@ INSERT INTO event (
     decimalLatitude, 
     decimalLongitude, 
     minimumElevationInMeters, 
-    recordedByID, 
     recordedBy, 
+    recordedByID, 
     eventDate 
 FROM ecoab_occurrences a
 JOIN temp_organism_interaction b 
@@ -287,10 +287,12 @@ FROM temp_organism_interaction
 INSERT INTO identification (
   identification_id,
   identification_based_on_material_entity_id,
+  identification_type,
   verbatim_identification,
   is_accepted_identification,
   taxon_formula,
   identified_by,
+  identified_by_id,
   kingdom,
   scientific_name,
   taxon_rank
@@ -299,10 +301,12 @@ INSERT INTO identification (
 SELECT
   gen_random_uuid()::TEXT AS identification_id,
   occurrenceID AS identification_based_on_material_entity_id,
+  'Material Entity',
   verbatimScientificName AS verbatim_identification,
   TRUE,
   'A',
   identifiedBy,
+  identifiedByID,
   kingdom,
   scientificName,
   taxonRank
@@ -316,6 +320,7 @@ ON a.taxonID=b.taxonID
 INSERT INTO identification (
   identification_id,
   identification_based_on_occurrence_id,
+  identification_type,
   verbatim_identification,
   is_accepted_identification,
   taxon_formula,
@@ -327,6 +332,7 @@ INSERT INTO identification (
 SELECT
   gen_random_uuid()::TEXT AS identification_id,
   occurrenceID AS identification_based_on_occurrence_id,
+  'Human Observation',
   verbatimScientificName AS verbatim_identification,
   TRUE,
   'A',
