@@ -1,10 +1,10 @@
-# CONABIO Bees data set for the DwCA_v2 publishing model
+# CONABIO Bees dataset for the DwCA_v2 publishing model
 
 This is dataset is an example of Organism interactions, with collected bees and observations for the plants they visited.
 
 Original data are shared in https://github.com/gbif/model-material/tree/master/conabio-bees/original-data.
 
-An original data set restructured for the Unified Model version 4.5 is shared in https://github.com/gbif/model-material/tree/master/conabio-bees/data-products. A copy of those data was made in the [input data folder](../input_data).
+An original dataset restructured for the Unified Model version 4.5 is shared in https://github.com/gbif/model-material/tree/master/conabio-bees/data-products. A copy of those data was made in the [input data folder](../input_data).
 
 The process to create the output dataset for the DwCA_v2 publishing model is as follows:
 

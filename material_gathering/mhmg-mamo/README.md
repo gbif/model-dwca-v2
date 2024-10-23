@@ -1,8 +1,8 @@
-# Material Gathering Dataset - MHNG Mammal Example
+# Material Gathering dataset - MHNG Mammal Example
 
 This is dataset is an example of gathered Material curated in a museum, with separate parts of the Material and GeneticSequences derived from Material, with multiple Identifications, and with Citations for the Identifications and GeneticSequences.
 
-This example dataset was derived from the original [SwissCollNet](https://github.com/gbif/model-material/tree/master/swisscollnet) example data set shared as part of Unified Model testing for Material. These same data have been copied into this repository as [input data](./input_data).
+This example dataset was derived from the original [SwissCollNet](https://github.com/gbif/model-material/tree/master/swisscollnet) example dataset shared as part of Unified Model testing for Material. These same data have been copied into this repository as [input data](./input_data).
 
 The input data are not exactly the [original data](https://github.com/gbif/model-material/tree/master/swisscollnet), they have been manipulated to populate a [DwCA_v2 PostgreSQL database](https://github.com/gbif/model-dwca-v2/tree/master/gbif/dwca_v2_schema.sql), which implements the Darwin Core Archive Version 2 (DwCA_v2) Publishing Model, using the manipulated input TSV files and the [loading script](./load_input_mhmg_mamo.sql) invoked by:
 

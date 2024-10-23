@@ -84,13 +84,13 @@
                   "datatype":"string"
                },
                {
-                  "name":"recorded_by",
-                  "titles":"recordedBy",
+                  "name":"event_conducted_by",
+                  "titles":"eventConductedBy",
                   "datatype":"string"
                },
                {
-                  "name":"recorded_by_id",
-                  "titles":"recordedByID",
+                  "name":"event_conducted_by_id",
+                  "titles":"eventConductedByID",
                   "datatype":"string"
                },
                {
@@ -460,7 +460,7 @@
                   }
                },
                {
-                  "columnReference":"recorded_by_id",
+                  "columnReference":"event_conducted_by_id",
                   "reference":{
                      "resource":"agent.csv",
                      "columnReference":"agent_id"
@@ -651,18 +651,8 @@
                   "datatype":"string"
                },
                {
-                  "name":"identification_type",
-                  "titles":"identificationType",
-                  "datatype":"string"
-               },
-               {
-                  "name":"identification_type_iri",
-                  "titles":"identificationTypeIRI",
-                  "datatype":"string"
-               },
-               {
-                  "name":"identification_type_vocabulary",
-                  "titles":"identificationTypeVocabulary",
+                  "name":"identification_based_on_media_id",
+                  "titles":"identificationBasedOnMediaID",
                   "datatype":"string"
                },
                {
@@ -769,6 +759,13 @@
                   "reference":{
                      "resource":"genetic_sequence.csv",
                      "columnReference":"genetic_sequence_id"
+                  }
+               },
+               {
+                  "columnReference":"identification_based_on_media_id",
+                  "reference":{
+                     "resource":"media.csv",
+                     "columnReference":"media_id"
                   }
                },
                {
@@ -941,6 +938,11 @@
                   "datatype":"string"
                },
                {
+                  "name":"evidence_for_occurrence_id",
+                  "titles":"evidenceForOccurrenceID",
+                  "datatype":"string"
+               },
+               {
                   "name":"derived_from_material_entity_id",
                   "titles":"derivedFromMaterialEntityID",
                   "datatype":"string"
@@ -993,6 +995,13 @@
                   "reference":{
                      "resource":"event.csv",
                      "columnReference":"event_id"
+                  }
+               },
+               {
+                  "columnReference":"evidence_for_occurrence_id",
+                  "reference":{
+                     "resource":"occurrence.csv",
+                     "columnReference":"occurrence_id"
                   }
                },
                {
@@ -2030,6 +2039,11 @@
                   "minimum":1,
                   "default":1,
                   "required":true
+               },
+               {
+                  "name":"agent_role_date",
+                  "titles":"agentRoleDate",
+                  "datatype":"string"
                },
                {
                   "name":"agent_id",

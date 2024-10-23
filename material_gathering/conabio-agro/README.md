@@ -1,8 +1,8 @@
-# CONABIO Agro data set for the DwCA_v2 publishing model
+# CONABIO Agro dataset for the DwCA_v2 publishing model
 
 Original data already mapped the the Unified Model version 4.5 are shared in https://github.com/gbif/model-material/tree/master/conabio-agro/data.
 
-An original data set restructured for the Unified Model version 4.5 is shared in https://github.com/gbif/model-material/tree/master/conabio-agro/data. A copy of those data was made in the [input data folder](../input_data).
+An original dataset restructured for the Unified Model version 4.5 is shared in https://github.com/gbif/model-material/tree/master/conabio-agro/data. A copy of those data was made in the [input data folder](../input_data).
 
 The process to create the output dataset for the DwCA_v2 publishing model is as follows:
 

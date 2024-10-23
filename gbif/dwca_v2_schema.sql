@@ -53,8 +53,8 @@ CREATE TABLE event (
   event_type_iri TEXT,
   event_type_vocabulary TEXT,
   field_number TEXT,
-  recorded_by TEXT,
-  recorded_by_id TEXT,
+  event_conducted_by TEXT,
+  event_conducted_by_id TEXT,
   event_date TEXT,
   event_time TEXT,
   start_day_of_year SMALLINT CHECK (start_day_of_year BETWEEN 1 AND 366),
@@ -123,7 +123,7 @@ CREATE TABLE event (
   preferred_spatial_representation TEXT
 );
 CREATE INDEX ON event(parent_event_id);
-CREATE INDEX ON event(recorded_by_id);
+CREATE INDEX ON event(event_conducted_by_id);
 CREATE INDEX ON event(protocol_id);
 CREATE INDEX ON event(georeferenced_by_id);
 CREATE INDEX ON event(georeference_protocol_id);
@@ -166,9 +166,7 @@ CREATE TABLE identification (
   identification_based_on_occurrence_id TEXT,
   identification_based_on_material_entity_id TEXT,
   identification_based_on_genetic_sequence_id TEXT,
-  identification_type TEXT,
-  identification_type_iri TEXT,
-  identification_type_vocabulary TEXT,
+  identification_based_on_media_id TEXT,
   verbatim_identification TEXT,
   is_accepted_identification BOOLEAN,
   taxon_formula TEXT DEFAULT 'A' NOT NULL,
@@ -189,6 +187,7 @@ CREATE TABLE identification (
 CREATE INDEX ON identification(identification_based_on_occurrence_id);
 CREATE INDEX ON identification(identification_based_on_material_entity_id);
 CREATE INDEX ON identification(identification_based_on_genetic_sequence_id);
+CREATE INDEX ON identification(identification_based_on_media_id);
 CREATE INDEX ON identification(identified_by_id);
 
 -- IdentificationTaxon
@@ -229,6 +228,7 @@ CREATE TABLE material (
   material_citation TEXT,
   material_entity_remarks TEXT,
   gathering_event_id TEXT,
+  evidence_for_occurrence_id TEXT,
   derived_from_material_entity_id TEXT,
   derivation_type TEXT,
   derivation_type_iri TEXT,
@@ -239,6 +239,7 @@ CREATE INDEX ON material(institution_id);
 CREATE INDEX ON material(owner_institution_id);
 CREATE INDEX ON material(collection_id);
 CREATE INDEX ON material(gathering_event_id);
+CREATE INDEX ON material(evidence_for_occurrence_id);
 CREATE INDEX ON material(derived_from_material_entity_id);
 CREATE INDEX ON material(part_of_material_entity_id);
 
@@ -485,6 +486,7 @@ CREATE TABLE agent_role (
   agent_role_iri TEXT,
   agent_role_vocabulary TEXT,
   agent_role_order SMALLINT NOT NULL CHECK (agent_role_order >= 1) DEFAULT 1,
+  agent_role_date TEXT,
   agent_id TEXT,
   agent_type TEXT,
   agent_type_iri TEXT,
