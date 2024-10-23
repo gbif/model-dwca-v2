@@ -623,6 +623,18 @@
                   "type":"string"
                },
                {
+                  "name":"identification_type",
+                  "type":"string"
+               },
+               {
+                  "name":"identification_type_iri",
+                  "type":"string"
+               },
+               {
+                  "name":"identification_type_vocabulary",
+                  "type":"string"
+               },
+               {
                   "name":"is_accepted_identification",
                   "type":"boolean"
                },

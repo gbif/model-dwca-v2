@@ -656,6 +656,21 @@
                   "datatype":"string"
                },
                {
+                  "name":"identification_type",
+                  "titles":"identificationType",
+                  "datatype":"string"
+               },
+               {
+                  "name":"identification_type_iri",
+                  "titles":"identificationTypeIRI",
+                  "datatype":"string"
+               },
+               {
+                  "name":"identification_type_vocabulary",
+                  "titles":"identificationTypeVocabulary",
+                  "datatype":"string"
+               },
+               {
                   "name":"verbatim_identification",
                   "titles":"verbatimIdentification",
                   "datatype":"string"

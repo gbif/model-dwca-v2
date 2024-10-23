@@ -39,8 +39,8 @@ INSERT INTO event (
     decimal_latitude, 
     decimal_longitude, 
     minimum_elevation_in_meters, 
-    recorded_by_id, 
-    recorded_by, 
+    event_conducted_by_id, 
+    event_conducted_by, 
     event_date
 )
 (SELECT
@@ -103,8 +103,8 @@ INSERT INTO event (
     decimal_latitude, 
     decimal_longitude, 
     minimum_elevation_in_meters, 
-    recorded_by_id, 
-    recorded_by, 
+    event_conducted_by_id, 
+    event_conducted_by, 
     event_date
 )
 (SELECT
@@ -145,8 +145,8 @@ INSERT INTO event (
     decimal_latitude, 
     decimal_longitude, 
     minimum_elevation_in_meters, 
-    recorded_by_id, 
-    recorded_by, 
+    event_conducted_by_id, 
+    event_conducted_by, 
     event_date
 )
 (SELECT
@@ -172,6 +172,12 @@ ON a.occurrenceID=b.subject_organism_id
 );
 -- n = 17265
 
+-- Update Material Gathering Event parentEventIDs with the co-occurring occurrenceIDs
+UPDATE material
+SET evidence_for_occurrence_id = subject_occurrence_id
+FROM temp_organism_interaction
+WHERE material.material_entity_id = subject_organism_id;
+
 -- Make Occurrence Events to match the object Occurrences
 INSERT INTO event (
     event_id, 
@@ -187,8 +193,8 @@ INSERT INTO event (
     decimal_latitude, 
     decimal_longitude, 
     minimum_elevation_in_meters, 
-    recorded_by_id, 
-    recorded_by, 
+    event_conducted_by_id, 
+    event_conducted_by, 
     event_date
 )
 (SELECT
@@ -281,7 +287,6 @@ FROM temp_organism_interaction
 INSERT INTO identification (
   identification_id,
   identification_based_on_material_entity_id,
-  identification_type,
   verbatim_identification,
   is_accepted_identification,
   taxon_formula,
@@ -294,7 +299,6 @@ INSERT INTO identification (
 SELECT
   gen_random_uuid()::TEXT AS identification_id,
   occurrenceID AS identification_based_on_material_entity_id,
-  'Material Entity',
   verbatimScientificName AS verbatim_identification,
   TRUE,
   'A',
@@ -312,7 +316,6 @@ ON a.taxonID=b.taxonID
 INSERT INTO identification (
   identification_id,
   identification_based_on_occurrence_id,
-  identification_type,
   verbatim_identification,
   is_accepted_identification,
   taxon_formula,
@@ -324,7 +327,6 @@ INSERT INTO identification (
 SELECT
   gen_random_uuid()::TEXT AS identification_id,
   occurrenceID AS identification_based_on_occurrence_id,
-  'Human Observation',
   verbatimScientificName AS verbatim_identification,
   TRUE,
   'A',
