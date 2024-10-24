@@ -18,15 +18,11 @@ FROM ranked_georeferences
 WHERE rn = 1;
 -- n=7004 rows
 
--- Create the event table.
--- All Events in this dataset are Occurrence Events.
--- The georeference table has multiple georeferences per location. Not all location 
--- records have a georeference. Create the event records from the combination of event, 
--- location and georeference tables.
+-- Create the event table from the input Events.
 
 INSERT INTO event (
   event_id, parent_event_id, preferred_event_name, event_type, field_number,
-  recorded_by, recorded_by_id, event_date, year, month, day, verbatim_event_date,
+  event_conducted_by, event_conducted_by_id, event_date, year, month, day, verbatim_event_date,
   verbatim_locality, verbatim_elevation, verbatim_depth, verbatim_coordinates,
   verbatim_latitude, verbatim_longitude, verbatim_coordinate_system, verbatim_srs,
   georeference_verification_status, habitat, protocol_description, sample_size_value,
@@ -78,7 +74,7 @@ FROM event;
 -- Use the temp_gathering_event to generate the MaterialGathering Events
 INSERT INTO event (
   event_id, parent_event_id, preferred_event_name, event_type, field_number,
-  recorded_by, recorded_by_id, event_date, year, month, day, verbatim_event_date,
+  event_conducted_by, event_conducted_by_id, event_date, year, month, day, verbatim_event_date,
   verbatim_locality, verbatim_elevation, verbatim_depth, verbatim_coordinates,
   verbatim_latitude, verbatim_longitude, verbatim_coordinate_system, verbatim_srs,
   georeference_verification_status, habitat, protocol_description, sample_size_value,
@@ -96,7 +92,7 @@ INSERT INTO event (
 )
 SELECT
   gathering_event_id, a.event_id, preferred_event_name, 'Material Gathering', field_number,
-  recorded_by, recorded_by_id, event_date, year, month, day, verbatim_event_date,
+  event_conducted_by, event_conducted_by_id, event_date, year, month, day, verbatim_event_date,
   verbatim_locality, verbatim_elevation, verbatim_depth, verbatim_coordinates,
   verbatim_latitude, verbatim_longitude, verbatim_coordinate_system, verbatim_srs,
   georeference_verification_status, habitat, protocol_description, sample_size_value,
@@ -239,6 +235,11 @@ JOIN in_occurrence b on a.material_entity_id=b.organism_id
 JOIN temp_gathering_event c ON b.occurrence_id=c.event_id;
 -- n=21146 rows
 
+UPDATE material
+SET evidence_for_occurrence_id = i.occurrence_id
+FROM in_occurrence_evidence i
+WHERE material.material_entity_id = i.entity_id;
+  
 -- Set the assertion_target_type to match the COMMON_TARGETS ENUM value.
 UPDATE in_assertion
 SET assertion_target_type = 'Material Entity'
