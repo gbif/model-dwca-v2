@@ -21,7 +21,7 @@ WHERE rn = 1;
 -- Create the event table from the input Events.
 
 INSERT INTO event (
-  event_id, parent_event_id, preferred_event_name, event_type, field_number,
+  event_id, parent_event_id, preferred_event_name, event_class, event_type, field_number,
   event_conducted_by, event_conducted_by_id, event_date, year, month, day, verbatim_event_date,
   verbatim_locality, verbatim_elevation, verbatim_depth, verbatim_coordinates,
   verbatim_latitude, verbatim_longitude, verbatim_coordinate_system, verbatim_srs,
@@ -39,7 +39,7 @@ INSERT INTO event (
   preferred_spatial_representation
 )
 SELECT 
-  event_id, parent_event_id, event_name, event_type, field_number,
+  event_id, parent_event_id, event_name, event_type::EVENT_CLASS, event_type, field_number,
   recorded_by, recorded_by_id, event_date, year, month, day, verbatim_event_date,
   verbatim_locality, verbatim_elevation, verbatim_depth, verbatim_coordinates,
   verbatim_latitude, verbatim_longitude, verbatim_coordinate_system, verbatim_srs,
@@ -73,14 +73,14 @@ FROM event;
 
 -- Use the temp_gathering_event to generate the MaterialGathering Events
 INSERT INTO event (
-  event_id, parent_event_id, preferred_event_name, event_type, field_number,
-  event_conducted_by, event_conducted_by_id, event_date, year, month, day, verbatim_event_date,
-  verbatim_locality, verbatim_elevation, verbatim_depth, verbatim_coordinates,
-  verbatim_latitude, verbatim_longitude, verbatim_coordinate_system, verbatim_srs,
-  georeference_verification_status, habitat, protocol_description, sample_size_value,
-  sample_size_unit, event_effort, field_notes, event_remarks, location_id, 
-  higher_geography_id, higher_geography, continent, water_body, island_group, island, 
-  country, country_code, state_province, county, municipality, locality, 
+  event_id, parent_event_id, preferred_event_name, event_class, event_type, field_number,
+  event_conducted_by, event_conducted_by_id, event_date, year, month, day, 
+  verbatim_event_date, verbatim_locality, verbatim_elevation, verbatim_depth, 
+  verbatim_coordinates, verbatim_latitude, verbatim_longitude, verbatim_coordinate_system, 
+  verbatim_srs, georeference_verification_status, habitat, protocol_description, 
+  sample_size_value, sample_size_unit, event_effort, field_notes, event_remarks, 
+  location_id, higher_geography_id, higher_geography, continent, water_body, island_group, 
+  island, country, country_code, state_province, county, municipality, locality, 
   minimum_elevation_in_meters, maximum_elevation_in_meters, vertical_datum, 
   minimum_depth_in_meters, maximum_depth_in_meters, 
   minimum_distance_above_surface_in_meters, maximum_distance_above_surface_in_meters, 
@@ -91,15 +91,16 @@ INSERT INTO event (
   preferred_spatial_representation
 )
 SELECT
-  material_gathering_id, a.event_id, preferred_event_name, 'Material Gathering', field_number,
-  event_conducted_by, event_conducted_by_id, event_date, year, month, day, verbatim_event_date,
-  verbatim_locality, verbatim_elevation, verbatim_depth, verbatim_coordinates,
-  verbatim_latitude, verbatim_longitude, verbatim_coordinate_system, verbatim_srs,
-  georeference_verification_status, habitat, protocol_description, sample_size_value,
-  sample_size_unit, event_effort, field_notes, event_remarks, a.location_id, 
-  higher_geography_id, higher_geography, continent, water_body, island_group, island, 
-  country, country_code, state_province, county, municipality, locality, 
-  minimum_elevation_in_meters, maximum_elevation_in_meters, vertical_datum, 
+  material_gathering_id, a.event_id, preferred_event_name, 
+  'Material Gathering'::EVENT_CLASS, 'Material Gathering', field_number, 
+  event_conducted_by, event_conducted_by_id, event_date, year, month, day, 
+  verbatim_event_date, verbatim_locality, verbatim_elevation, verbatim_depth, 
+  verbatim_coordinates, verbatim_latitude, verbatim_longitude, verbatim_coordinate_system, 
+  verbatim_srs, georeference_verification_status, habitat, protocol_description, 
+  sample_size_value, sample_size_unit, event_effort, field_notes, event_remarks, 
+  a.location_id, higher_geography_id, higher_geography, continent, water_body, 
+  island_group, island, country, country_code, state_province, county, municipality, 
+  locality, minimum_elevation_in_meters, maximum_elevation_in_meters, vertical_datum, 
   minimum_depth_in_meters, maximum_depth_in_meters, 
   minimum_distance_above_surface_in_meters, maximum_distance_above_surface_in_meters, 
   location_remarks, decimal_latitude, decimal_longitude, geodetic_datum, 
