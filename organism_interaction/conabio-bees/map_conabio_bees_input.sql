@@ -9,7 +9,7 @@ INSERT INTO material (
     collection_code,
     catalog_number,
     other_catalog_numbers,
-    gathering_event_id
+    material_gathering_id
 )
 (
 SELECT 
@@ -19,14 +19,15 @@ SELECT
     collectionCode,
     catalogNumber,
     occurrenceID AS other_catalog_numbers,
-    gen_random_uuid()::TEXT AS gathering_event_id
+    gen_random_uuid()::TEXT AS material_gathering_id
 FROM ecoab_occurrences
 );
 -- n = 17265
 
--- Make material gathering Events to match the material
+-- Make MaterialGathering Events to match the material
 INSERT INTO event (
     event_id, 
+    event_class,
     event_type, 
     year, 
     month, 
@@ -44,7 +45,8 @@ INSERT INTO event (
     event_date
 )
 (SELECT
-    gathering_event_id AS event_id,
+    material_gathering_id AS event_id,
+    'Material Gathering'::EVENT_CLASS AS event_class, 
     'Material Gathering' AS event_type, 
     year, 
     month, 
@@ -64,6 +66,15 @@ FROM ecoab_occurrences a
 JOIN material b ON occurrenceID=material_entity_id
 );
 -- n = 17265
+
+-- Create the MaterialGathering table
+INSERT INTO material_gathering (
+  material_gathering_id
+)
+SELECT
+  material_gathering_id
+  FROM material;
+-- n=17265 rows added
 
 -- Make the capitalization consistent on occurrenceID and resourceID in the 
 -- ecoab_interaction_data table.
@@ -91,6 +102,7 @@ FROM ecoab_interaction_data;
 -- Make OrganismInteraction Events
 INSERT INTO event (
     event_id, 
+    event_class,
     event_type, 
     year, 
     month, 
@@ -109,6 +121,7 @@ INSERT INTO event (
 )
 (SELECT
     organism_interaction_id AS event_id,
+    'Organism Interaction'::EVENT_CLASS AS event_class, 
     'Organism Interaction' AS event_type, 
     year, 
     month, 
@@ -133,6 +146,7 @@ ON a.occurrenceID=b.subject_organism_id
 -- Make Occurrence Events to match the subject Occurrences
 INSERT INTO event (
     event_id, 
+    event_class,
     event_type, 
     year, 
     month, 
@@ -151,6 +165,7 @@ INSERT INTO event (
 )
 (SELECT
     subject_occurrence_id AS event_id,
+    'Occurrence'::EVENT_CLASS AS event_class, 
     'Occurrence' AS event_type, 
     year, 
     month, 

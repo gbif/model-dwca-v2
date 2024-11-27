@@ -4,3 +4,4 @@
 \COPY occurrence TO './output_data/occurrence.tsv' WITH (FORMAT TEXT, DELIMITER E'\t', NULL '', HEADER);
 \COPY identification TO './output_data/identification.tsv' WITH (FORMAT TEXT, DELIMITER E'\t', NULL '', HEADER);
 \COPY material TO './output_data/material.tsv' WITH (FORMAT TEXT, DELIMITER E'\t', NULL '', HEADER);
+\COPY material_gathering TO './output_data/material_gathering.tsv' WITH (FORMAT TEXT, DELIMITER E'\t', NULL '', HEADER);
