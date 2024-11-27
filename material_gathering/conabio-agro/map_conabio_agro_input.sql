@@ -61,12 +61,12 @@ SELECT
   LEFT JOIN temp_georeference c ON b.location_id = c.location_id;
 -- n=21146 rows
 
--- The event table now has Occurrences, but needs separate GatheringEvents for the 
--- material records.
+-- The event table now has Occurrences, but needs separate MaterialGathering Events for 
+-- the Material records.
 
 SELECT 
 event_id,
-gen_random_uuid() AS gathering_event_id
+gen_random_uuid() AS material_gathering_id
 INTO TABLE temp_gathering_event
 FROM event;
 -- n=21146 rows
@@ -91,7 +91,7 @@ INSERT INTO event (
   preferred_spatial_representation
 )
 SELECT
-  gathering_event_id, a.event_id, preferred_event_name, 'Material Gathering', field_number,
+  material_gathering_id, a.event_id, preferred_event_name, 'Material Gathering', field_number,
   event_conducted_by, event_conducted_by_id, event_date, year, month, day, verbatim_event_date,
   verbatim_locality, verbatim_elevation, verbatim_depth, verbatim_coordinates,
   verbatim_latitude, verbatim_longitude, verbatim_coordinate_system, verbatim_srs,
@@ -112,6 +112,16 @@ SELECT
 -- n=21146 rows added
 -- n=42292 rows
 -- All Events Occurrence and MaterialGathering Events now included
+
+-- Create the MaterialGathering table
+INSERT INTO material_gathering (
+  material_gathering_id
+)
+SELECT
+  material_gathering_id
+  FROM temp_gathering_event;
+-- n=21146 rows added
+
 -- Create the occurrence table.
 -- All occurrence_status values are 'PRESENT' on input, which will map to default 
 -- 'Present' if not included in SELECT.
@@ -212,7 +222,7 @@ INSERT INTO material (
   disposition,
   associated_sequences,
   material_citation,
-  gathering_event_id
+  material_gathering_id
 )
 SELECT
   material_entity_id,
@@ -229,7 +239,7 @@ SELECT
   dispositions AS disposition,
   associated_secuences AS associated_sequences,
   associated_references AS material_citation,
-  gathering_event_id
+  material_gathering_id
 FROM in_material_entity a
 JOIN in_occurrence b on a.material_entity_id=b.organism_id
 JOIN temp_gathering_event c ON b.occurrence_id=c.event_id;
