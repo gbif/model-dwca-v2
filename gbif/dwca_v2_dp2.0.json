@@ -13,7 +13,7 @@
       }
    ],
    "created":"2024-10-12",
-   "modified":"2024-10-12",
+   "modified":"2024-11-22",
    "keywords":[
       "Tabular Data Package",
       "Biodiversity Information Standards",
@@ -27,6 +27,7 @@
       "Occurrence",
       "Identification",
       "IdentificationTaxon",
+      "MaterialGathering",
       "MaterialEntity",
       "Collection",
       "GeneticSequence",
@@ -87,11 +88,22 @@
                   "type":"string"
                },
                {
-                  "name":"event_type",
+                  "name":"event_class",
                   "type":"string",
                   "constraints":{
-                     "required":true
+                     "required":true,
+                     "enum":[
+                        "Event",
+                        "MaterialGathering",
+                        "Occurrence",
+                        "OrganismInteraction",
+                        "Survey"
+                     ]
                   }
+               },
+               {
+                  "name":"event_type",
+                  "type":"string",
                },
                {
                   "name":"event_type_iri",
@@ -202,22 +214,6 @@
                   "type":"string"
                },
                {
-                  "name":"protocol_id",
-                  "type":"string"
-               },
-               {
-                  "name":"protocol_name",
-                  "type":"string"
-               },
-               {
-                  "name":"protocol_description",
-                  "type":"string"
-               },
-               {
-                  "name":"protocol_citation",
-                  "type":"string"
-               },
-               {
                   "name":"sample_size_value",
                   "type":"string"
                },
@@ -239,6 +235,26 @@
                },
                {
                   "name":"event_remarks",
+                  "type":"string"
+               },
+               {
+                  "name":"protocol_id",
+                  "type":"string"
+               },
+               {
+                  "name":"protocol_name",
+                  "type":"string"
+               },
+               {
+                  "name":"protocol_description",
+                  "type":"string"
+               },
+               {
+                  "name":"protocol_citation",
+                  "type":"string"
+               },
+               {
+                  "name":"protocol_remarks",
                   "type":"string"
                },
                {
@@ -796,6 +812,21 @@
          }
       },
       {
+         "name":"material_gathering",
+         "path":"material_gathering.csv",
+         "schema":{
+            "fields":[
+               {
+                  "name":"material_gathering_id",
+                  "type":"string",
+                  "constraints":{
+                     "required":true
+                  }
+               }
+            ]
+         }
+      },
+      {
          "name":"material",
          "path":"material.csv",
          "schema":{
@@ -883,7 +914,7 @@
                   "type":"string"
                },
                {
-                  "name":"gathering_event_id",
+                  "name":"material_gathering_id",
                   "type":"string"
                },
                {
@@ -934,10 +965,10 @@
                   }
                },
                {
-                  "fields":"gathering_event_id",
+                  "fields":"material_gathering_id",
                   "reference":{
-                     "resource":"event",
-                     "fields":"event_id"
+                     "resource":"material_gathering",
+                     "fields":"material_gathering_id"
                   }
                },
                {
@@ -1029,7 +1060,7 @@
                   }
                },
                {
-                  "name":"gathering_event_id",
+                  "name":"material_gathering_id",
                   "type":"string"
                },
                {
@@ -1061,10 +1092,10 @@
             ],
             "foreignKeys":[
                {
-                  "fields":"gathering_event_id",
+                  "fields":"material_gathering_id",
                   "reference":{
-                     "resource":"event",
-                     "fields":"event_id"
+                     "resource":"material_gathering",
+                     "fields":"material_gathering_id"
                   }
                },
                {
@@ -1090,7 +1121,7 @@
                   }
                },
                {
-                  "name":"gathering_event_id",
+                  "name":"material_gathering_id",
                   "type":"string"
                },
                {
@@ -1176,10 +1207,10 @@
             ],
             "foreignKeys":[
                {
-                  "fields":"gathering_event_id",
+                  "fields":"material_gathering_id",
                   "reference":{
-                     "resource":"event",
-                     "fields":"event_id"
+                     "resource":"material_gathering",
+                     "fields":"material_gathering_id"
                   }
                },
                {
@@ -2295,6 +2326,10 @@
                {
                   "name":"protocol_citation",
                   "type":"string"
+               },
+               {
+                  "name":"protocol_remarks",
+                  "type":"string"
                }
             ]
          }
@@ -2377,12 +2412,29 @@
                   "default":1
                },
                {
+                  "name":"relationship_according_to",
+                  "type":"string"
+               },
+               {
+                  "name":"relationship_according_to_id",
+                  "type":"string"
+               },
+               {
                   "name":"relationship_effective_date",
                   "type":"string"
                },
                {
                   "name":"entity_remarks",
                   "type":"string"
+               }
+            ],
+            "foreignKeys":[
+               {
+                  "fields":"relationship_according_to_id",
+                  "reference":{
+                     "resource":"agent",
+                     "fields":"agent_id"
+                  }
                }
             ]
          }

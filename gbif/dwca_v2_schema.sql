@@ -2,12 +2,22 @@
 -- Schema for the dwca_v2 extended occurrences publishing model.
 -- 
 
+-- Event classes
+CREATE TYPE EVENT_CLASS AS ENUM (
+  'Event',
+  'Material Gathering',
+  'Occurrence',
+  'Organism Interaction',
+  'Survey'
+);
+
 -- Target types for the common tables (AgentRole, Assertion, Citation, Identifier, Media
 --   Relationship)
 CREATE TYPE COMMON_TARGETS AS ENUM (
   'Event',
   'Occurrence',
   'Identification',
+  'Material Gathering',
   'Material Entity',
   'Collection',
   'Genetic Sequence',
@@ -49,6 +59,7 @@ CREATE TABLE event (
   event_id TEXT PRIMARY KEY,
   parent_event_id TEXT REFERENCES event ON DELETE CASCADE DEFERRABLE,
   preferred_event_name TEXT,
+  event_class EVENT_CLASS DEFAULT 'Event' NOT NULL,
   event_type TEXT NOT NULL,
   event_type_iri TEXT,
   event_type_vocabulary TEXT,
@@ -73,16 +84,17 @@ CREATE TABLE event (
   verbatim_srs TEXT,
   georeference_verification_status TEXT,
   habitat TEXT,
-  protocol_id TEXT,
-  protocol_name TEXT,
-  protocol_description TEXT,
-  protocol_citation TEXT,
   sample_size_value TEXT,
   sample_size_unit TEXT,
   event_effort TEXT,
   field_notes TEXT,
   event_citation TEXT,
   event_remarks TEXT,
+  protocol_id TEXT,
+  protocol_name TEXT,
+  protocol_description TEXT,
+  protocol_citation TEXT,
+  protocol_remarks TEXT,
   location_id TEXT,
   higher_geography_id TEXT,
   higher_geography TEXT,
@@ -129,7 +141,8 @@ CREATE INDEX ON event(georeferenced_by_id);
 CREATE INDEX ON event(georeference_protocol_id);
 
 -- Occurrence (https://dwc.tdwg.org/terms/#occurrence)
---   Information about a dwc:Organism in a place during some time. A type of dwc:Event.
+--   An Event establishing the presence or absence of a dwc:Organism within a place and 
+--   during an interval of time.
 --   One Event per Occurrence
 
 CREATE TABLE occurrence (
@@ -206,7 +219,15 @@ CREATE TABLE identification_taxon (
   taxon_rank TEXT,
   taxon_remarks TEXT
 );
-  
+
+-- MaterialGathering
+--   An Event in which a dwc:MaterialEntity was gathered.
+--   One Event per Occurrence
+
+CREATE TABLE material_gathering (
+  material_gathering_id TEXT PRIMARY KEY REFERENCES event ON DELETE CASCADE DEFERRABLE
+);
+
 -- Material (https://dwc.tdwg.org/terms/#materialentity)
 --  Includes dwc:Organisms, dwc:MaterialEntities
 
@@ -230,7 +251,7 @@ CREATE TABLE material (
   associated_sequences TEXT,
   material_citation TEXT,
   material_entity_remarks TEXT,
-  gathering_event_id TEXT,
+  material_gathering_id TEXT,
   evidence_for_occurrence_id TEXT,
   derived_from_material_entity_id TEXT,
   derivation_type TEXT,
@@ -241,7 +262,7 @@ CREATE TABLE material (
 CREATE INDEX ON material(institution_id);
 CREATE INDEX ON material(owner_institution_id);
 CREATE INDEX ON material(collection_id);
-CREATE INDEX ON material(gathering_event_id);
+CREATE INDEX ON material(material_gathering_id);
 CREATE INDEX ON material(evidence_for_occurrence_id);
 CREATE INDEX ON material(derived_from_material_entity_id);
 CREATE INDEX ON material(part_of_material_entity_id);
@@ -266,14 +287,14 @@ CREATE INDEX ON collection(institution_id);
 
 CREATE TABLE genetic_sequence (
   genetic_sequence_id TEXT PRIMARY KEY,
-  gathering_event_id TEXT,
+  material_gathering_id TEXT,
   derived_from_material_entity_id TEXT,
   genetic_sequence_type TEXT NOT NULL,
   genetic_sequence TEXT NOT NULL,
   genetic_sequence_citation TEXT,
   genetic_sequence_remarks TEXT
 );
-CREATE INDEX ON genetic_sequence(gathering_event_id);
+CREATE INDEX ON genetic_sequence(material_gathering_id);
 CREATE INDEX ON genetic_sequence(derived_from_material_entity_id);
 
 -- ChronometricAge (https://tdwg.github.io/chrono/terms/#chronometricage)
@@ -283,7 +304,7 @@ CREATE INDEX ON genetic_sequence(derived_from_material_entity_id);
 
 CREATE TABLE chronometric_age (
   chronometric_age_id TEXT PRIMARY KEY, 
-  gathering_event_id TEXT REFERENCES event ON DELETE CASCADE DEFERRABLE,
+  material_gathering_id TEXT REFERENCES event ON DELETE CASCADE DEFERRABLE,
   verbatim_chronometric_age TEXT,
   chronometric_age_protocol TEXT,
   chronometric_age_protocol_id TEXT,
@@ -305,7 +326,7 @@ CREATE TABLE chronometric_age (
   chronometric_age_references TEXT,
   chronometric_age_remarks TEXT
 );
-CREATE INDEX ON chronometric_age(gathering_event_id);
+CREATE INDEX ON chronometric_age(material_gathering_id);
 CREATE INDEX ON chronometric_age(chronometric_age_protocol_id);
 CREATE INDEX ON chronometric_age(chronometric_age_conversion_protocol_id);
 CREATE INDEX ON chronometric_age(material_dated_id);
@@ -612,7 +633,8 @@ CREATE TABLE protocol (
   protocol_type_vocabulary TEXT,
   protocol_name TEXT,
   protocol_description TEXT,
-  protocol_citation TEXT
+  protocol_citation TEXT,
+  protocol_remarks TEXT
 );
 CREATE INDEX ON protocol(protocol_target_id);
 
@@ -636,8 +658,11 @@ CREATE TABLE relationship (
   related_resource_type_iri TEXT,
   related_resource_type_vocabulary TEXT,
   relationship_order SMALLINT NOT NULL DEFAULT 1 CHECK (relationship_order >= 1),
+  relationship_according_to TEXT,
+  relationship_according_to_id TEXT,
   relationship_effective_date TEXT,
   entity_remarks TEXT
 );
 CREATE INDEX ON relationship(subject_resource_id);
 CREATE INDEX ON relationship(related_resource_id);
+CREATE INDEX ON relationship(relationship_according_to_id);

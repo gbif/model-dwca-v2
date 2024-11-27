@@ -11,12 +11,15 @@ The process to create the output dataset for the DwCA_v2 publishing model is as 
 ## Create a postgreSQL database to hold the input data and the output data mapped to the dwca_v2 publishing model:
 ```cd material_gathering/mhmg-mamo```
 
-(First time) ```createdb mhmg_mamo && psql mhmg_mamo -f ../../gbif/dwca_v2_schema.sql```
+(First time) ```createdb mhmg_mamo && psql mhmg_mamo -f ../../gbif/dwca_v2_schema.sql  && psql mhmg_mamo -f ./schema_input_mhmg_mamo.sql```
 
-(Subsequent times) ```dropdb mhmg_mamo && createdb mhmg_mamo && psql mhmg_mamo -f ../../gbif/dwca_v2_schema.sql```
+(Subsequent times) ```dropdb mhmg_mamo && createdb mhmg_mamo && psql mhmg_mamo -f ../../gbif/dwca_v2_schema.sql && psql mhmg_mamo -f ./schema_input_mhmg_mamo.sql```
 
 ## Load the input data into the database:
-````psql mhmg_mamo -f load_input_mhmg_mamo.sql```
+```psql mhmg_mamo -f load_input_mhmg_mamo.sql```
+
+## Run the script to produce the publishing model tables within the same database:
+```psql mhmg_mamo -f map_mhmg_mamo_input.sql```
 
 ## Run the script to export the publishing model tables as TSV files:
 ```psql mhmg_mamo -f export_mhmg_mamo_tsvs.sql```

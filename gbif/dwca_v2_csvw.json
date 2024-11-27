@@ -21,6 +21,7 @@
       "Occurrence",
       "Identification",
       "IdentificationTaxon",
+      "MaterialGathering",
       "MaterialEntity",
       "Collection",
       "GeneticSequence",
@@ -63,10 +64,23 @@
                   "datatype":"string"
                },
                {
+                  "name":"event_class",
+                  "titles":"eventClass",
+                  "datatype":"string",
+                  "required":true,
+                  "constraints":{
+                     "enum":[
+                        "Event",
+                        "MaterialGathering",
+                        "Occurrence",
+                        "OrganismInteraction",
+                        "Survey"
+                     ]
+               },
+               {
                   "name":"event_type",
                   "titles":"eventType",
-                  "datatype":"string",
-                  "required":true
+                  "datatype":"string"
                },
                {
                   "name":"event_type_iri",
@@ -192,26 +206,6 @@
                   "datatype":"string"
                },
                {
-                  "name":"protocol_id",
-                  "titles":"protocolID",
-                  "datatype":"string"
-               },
-               {
-                  "name":"protocol_name",
-                  "titles":"protocolName",
-                  "datatype":"string"
-               },
-               {
-                  "name":"protocol_description",
-                  "titles":"protocolDescription",
-                  "datatype":"string"
-               },
-               {
-                  "name":"protocol_citation",
-                  "titles":"protocolCitation",
-                  "datatype":"string"
-               },
-               {
                   "name":"sample_size_value",
                   "titles":"sampleSizeValue",
                   "datatype":"string"
@@ -239,6 +233,31 @@
                {
                   "name":"event_remarks",
                   "titles":"eventRemarks",
+                  "datatype":"string"
+               },
+               {
+                  "name":"protocol_id",
+                  "titles":"protocolID",
+                  "datatype":"string"
+               },
+               {
+                  "name":"protocol_name",
+                  "titles":"protocolName",
+                  "datatype":"string"
+               },
+               {
+                  "name":"protocol_description",
+                  "titles":"protocolDescription",
+                  "datatype":"string"
+               },
+               {
+                  "name":"protocol_citation",
+                  "titles":"protocolCitation",
+                  "datatype":"string"
+               },
+               {
+                  "name":"protocol_remarks",
+                  "titles":"protocolRemarks",
                   "datatype":"string"
                },
                {
@@ -678,7 +697,7 @@
                {
                   "name":"is_accepted_identification",
                   "titles":"isAcceptedIdentification",
-                  "datatype":"boolean",
+                  "datatype":"boolean"
                },
                {
                   "name":"taxon_formula",
@@ -847,6 +866,22 @@
          }
       },
       {
+         "url":"material_gathering.csv",
+         "tableSchema":{
+            "columns":[
+               {
+                  "name":"material_gathering_id",
+                  "titles":"materialGatheringID",
+                  "datatype":"string",
+                  "primaryKey":true
+               }
+            ],
+            "foreignKeys":[
+               
+            ]
+         }
+      },
+      {
          "url":"material.csv",
          "tableSchema":{
             "columns":[
@@ -948,7 +983,7 @@
                   "datatype":"string"
                },
                {
-                  "name":"gathering_event_id",
+                  "name":"material_gathering_id",
                   "titles":"gatheringEventID",
                   "datatype":"string"
                },
@@ -1006,7 +1041,7 @@
                   }
                },
                {
-                  "columnReference":"gathering_event_id",
+                  "columnReference":"material_gathering_id",
                   "reference":{
                      "resource":"event.csv",
                      "columnReference":"event_id"
@@ -1104,7 +1139,7 @@
                   "primaryKey":true
                },
                {
-                  "name":"gathering_event_id",
+                  "name":"material_gathering_id",
                   "titles":"gatheringEventID",
                   "datatype":"string"
                },
@@ -1138,10 +1173,10 @@
             ],
             "foreignKeys":[
                {
-                  "columnReference":"gathering_event_id",
+                  "columnReference":"material_gathering_id",
                   "reference":{
-                     "resource":"event.csv",
-                     "columnReference":"event_id"
+                     "resource":"material_gathering.csv",
+                     "columnReference":"material_gathering_id"
                   }
                },
                {
@@ -1165,8 +1200,8 @@
                   "primaryKey":true
                },
                {
-                  "name":"gathering_event_id",
-                  "titles":"gatheringEventID",
+                  "name":"material_gathering_id",
+                  "titles":"materialGatheringID",
                   "datatype":"string"
                },
                {
@@ -1272,10 +1307,10 @@
             ],
             "foreignKeys":[
                {
-                  "columnReference":"gathering_event_id",
+                  "columnReference":"material_gathering_id",
                   "reference":{
-                     "resource":"event.csv",
-                     "columnReference":"event_id"
+                     "resource":"matieral_gathering.csv",
+                     "columnReference":"material_gathering_id"
                   }
                },
                {
@@ -2527,6 +2562,11 @@
                   "name":"protocol_citation",
                   "titles":"protocolCitation",
                   "datatype":"string"
+               },
+               {
+                  "name":"protocol_remarks",
+                  "titles":"protocolRemarks",
+                  "datatype":"string"
                }
             ],
             "foreignKeys":[
@@ -2612,6 +2652,16 @@
                   "required":true
                },
                {
+                  "name":"relationship_according_to",
+                  "titles":"relationshipAccordingTo",
+                  "datatype":"string"
+               },
+               {
+                  "name":"relationship_according_to_id",
+                  "titles":"relationshipAccordingToID",
+                  "datatype":"string"
+               },
+               {
                   "name":"relationship_effective_date",
                   "titles":"relationshipEffectiveDate",
                   "datatype":"string"
@@ -2623,7 +2673,13 @@
                }
             ],
             "foreignKeys":[
-               
+               {
+                  "columnReference":"relationship_according_to_id",
+                  "reference":{
+                     "resource":"agent.csv",
+                     "columnReference":"agent_id"
+                  }
+               }
             ]
          }
       }
