@@ -1,12 +1,18 @@
 --
 -- We create:
 --   Occurrence events for observed species
---   GatheringEvent events for those with material (identified by a specific pattern)
--- A view simplifies this
+--   GatheringEvent events for those with material
 --
+
+-- utility to allow multiple scanning and filtering
 CREATE VIEW view_event AS
 SELECT
-  coalesce(columns('occurrenceID'), null) AS eventID,
+  -- excluded in exports but used for filters
+  occurrenceID AS _occurrenceID,
+  basisOfRecord AS _basisOfRecord,
+  farmFingerprint64('MaterialEvent', occurrenceID) AS _materialGatheringID,
+
+  -- columns always included
   coalesce(columns('parentEventID'), null) AS parentEventID,
   coalesce(columns('preferredEventName'), null) AS preferredEventName,
   coalesce(columns('eventType'), null) AS eventType,
@@ -84,22 +90,28 @@ SELECT
   coalesce(columns('preferredSpatialRepresentation'), null) AS preferredSpatialRepresentation
 FROM file('target/dwca1/occurrence.txt', TabSeparatedWithNames);
 
-
-SELECT 'Occurrence' AS eventClass, *
+-- create events for the occurrences
+SELECT
+  'Occurrence' AS eventClass,
+  _occurrenceID as eventID,
+  * EXCEPT (_occurrenceID, _basisOfRecord, _materialGatheringID)
 FROM view_event
 INTO OUTFILE 'target/dwca2/event.txt' TRUNCATE FORMAT TabSeparatedWithNames;
 
--- append the gatherings
-SELECT 'GatheringEvent' AS eventClass, *
+-- append events for the gatherings creating a new ID
+SELECT
+  'GatheringEvent' AS eventClass,
+  _materialGatheringID AS eventID,
+   * EXCEPT (_occurrenceID, _basisOfRecord, _materialGatheringID)
 FROM view_event
-WHERE startsWith(fieldNumber, 'C-') OR startsWith(fieldNumber, 'F-C-')
+WHERE lower(replaceAll(_basisOfRecord, '_', '')) IN ('preservedspecimen', 'materialsample')
 INTO OUTFILE 'target/dwca2/event.txt' APPEND FORMAT TabSeparatedWithNames;
 
 --
 -- Occurrence events
 --
 SELECT
-  coalesce(columns('occurrenceID'), null) AS occurrenceID,
+  occurrenceID AS occurrenceID,
   coalesce(columns('organismQuantity'), null) AS organismQuantity,
   coalesce(columns('organismQuantityType'), null) AS organismQuantityType,
   coalesce(columns('organismQuantityTypeIRI'), null) AS organismQuantityTypeIRI,
@@ -127,8 +139,7 @@ INTO OUTFILE 'target/dwca2/occurrence.txt' TRUNCATE FORMAT TabSeparatedWithNames
 --
 -- Material Gathering events
 --
-SELECT
-  coalesce(columns('occurrenceID'), null) AS materialGatheringID
-FROM file('target/dwca1/occurrence.txt', TabSeparatedWithNames)
-WHERE startsWith(fieldNumber, 'C-') OR startsWith(fieldNumber, 'F-C-')
+SELECT _materialGatheringID AS materialGatheringID
+FROM view_event
+WHERE lower(replaceAll(_basisOfRecord, '_', '')) IN ('preservedspecimen', 'materialsample')
 INTO OUTFILE 'target/dwca2/materialGathering.txt' TRUNCATE FORMAT TabSeparatedWithNames;
