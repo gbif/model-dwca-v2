@@ -145,7 +145,7 @@ WHERE lower(replaceAll(_basisOfRecord, '_', '')) IN ('preservedspecimen', 'mater
 INTO OUTFILE 'target/dwca2/materialGathering.txt' TRUNCATE FORMAT TabSeparatedWithNames;
 
 --
--- Create some material. This dataset uses strange use of catalogNumbers.
+-- Create material noting this dataset has non-standard use of catalogNumbers.
 --
 SELECT
   otherCatalogNumbers AS materialEntityID,
@@ -178,3 +178,31 @@ SELECT
 FROM file('target/dwca1/occurrence.txt', TabSeparatedWithNames)
 WHERE lower(replaceAll(basisOfRecord, '_', '')) IN ('preservedspecimen', 'materialsample')
 INTO OUTFILE 'target/dwca2/material.txt' TRUNCATE FORMAT TabSeparatedWithNames;
+
+--
+-- Create media attached to the occurrences given this is occurrence core.
+--
+SELECT
+  coalesce(columns('identifier'), null) AS mediaID,
+  toString(id) AS mediaTargetID,
+  'Occurrence' AS mediaTargetType,
+  coalesce(columns('type'), null) AS mediaType,
+  coalesce(columns('mediaTypeIRI'), null) AS mediaTypeIRI,
+  coalesce(columns('mediaTypeVocabulary'), null) AS mediaTypeVocabulary,
+  coalesce(columns('identifier'), null) AS accessURI,
+  coalesce(columns('WebStatement'), null) AS WebStatement,
+  coalesce(columns('format'), null) AS format,
+  coalesce(columns('rights'), null) AS rights,
+  coalesce(columns('rightsHolder'), null) AS Owner,
+  coalesce(columns('source'), null) AS source,
+  coalesce(columns('creator'), null) AS creator,
+  coalesce(columns('creatorID'), null) AS creatorID,
+  coalesce(columns('CreateDate'), null) AS CreateDate,
+  coalesce(columns('modified'), null) AS modified,
+  coalesce(columns('mediaLanguage'), null) AS mediaLanguage,
+  coalesce(columns('mediaSubjectCategory'), null) AS mediaSubjectCategory,
+  coalesce(columns('mediaSubjectCategoryIRI'), null) AS mediaSubjectCategoryIRI,
+  coalesce(columns('mediaSubjectCategoryVocabulary'), null) AS mediaSubjectCategoryVocabulary,
+  coalesce(columns('mediaDescription'), null) AS mediaDescription
+FROM file('target/dwca1/images.txt', TabSeparatedWithNames)
+INTO OUTFILE 'target/dwca2/media.txt' TRUNCATE FORMAT TabSeparatedWithNames;
