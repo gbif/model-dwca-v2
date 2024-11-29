@@ -2,7 +2,7 @@
 -- We create:
 --   Occurrence events for observed species
 --   GatheringEvent events for those with material
---
+--   Material for records with the correct basisOfRecord
 
 -- utility to allow multiple scanning and filtering
 CREATE VIEW view_event AS
@@ -143,3 +143,38 @@ SELECT _materialGatheringID AS materialGatheringID
 FROM view_event
 WHERE lower(replaceAll(_basisOfRecord, '_', '')) IN ('preservedspecimen', 'materialsample')
 INTO OUTFILE 'target/dwca2/materialGathering.txt' TRUNCATE FORMAT TabSeparatedWithNames;
+
+--
+-- Create some material. This dataset uses strange use of catalogNumbers.
+--
+SELECT
+  otherCatalogNumbers AS materialEntityID,
+  coalesce(columns('materialEntityType'), null) AS materialEntityType,
+  coalesce(columns('materialEntityTypeIRI'), null) AS materialEntityTypeIRI,
+  coalesce(columns('materialEntityTypeVocabulary'), null) AS materialEntityTypeVocabulary,
+  coalesce(columns('institutionCode'), null) AS institutionCode,
+  coalesce(columns('institutionID'), null) AS institutionID,
+  coalesce(columns('ownerInstitutionCode'), null) AS ownerInstitutionCode,
+  coalesce(columns('ownerInstitutionID'), null) AS ownerInstitutionID,
+  coalesce(columns('collectionCode'), null) AS collectionCode,
+  coalesce(columns('collectionID'), null) AS collectionID,
+  coalesce(columns('catalogNumber'), null) AS catalogNumber,
+  coalesce(columns('otherCatalogNumbers'), null) AS otherCatalogNumbers,
+  coalesce(columns('recordNumber'), null) AS recordNumber,
+  coalesce(columns('preparations'), null) AS preparations,
+  coalesce(columns('disposition'), null) AS disposition,
+  coalesce(columns('verbatimLabel'), null) AS verbatimLabel,
+  coalesce(columns('associatedSequences'), null) AS associatedSequences,
+  coalesce(columns('materialCitation'), null) AS materialCitation,
+  coalesce(columns('materialEntityRemarks'), null) AS materialEntityRemarks,
+  farmFingerprint64('MaterialEvent', occurrenceID) AS materialGatheringID,
+  occurrenceID AS evidenceForOccurrenceID,
+  coalesce(columns('derivationEventID'), null) AS derivationEventID,
+  coalesce(columns('derivedFromMaterialEntityID'), null) AS derivedFromMaterialEntityID,
+  coalesce(columns('derivationType'), null) AS derivationType,
+  coalesce(columns('derivationTypeIRI'), null) AS derivationTypeIRI,
+  coalesce(columns('derivationTypeVocabulary'), null) AS derivationTypeVocabulary,
+  coalesce(columns('partOfMaterialEntityID'), null) AS partOfMaterialEntityID
+FROM file('target/dwca1/occurrence.txt', TabSeparatedWithNames)
+WHERE lower(replaceAll(basisOfRecord, '_', '')) IN ('preservedspecimen', 'materialsample')
+INTO OUTFILE 'target/dwca2/material.txt' TRUNCATE FORMAT TabSeparatedWithNames;

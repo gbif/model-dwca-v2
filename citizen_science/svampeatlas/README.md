@@ -34,6 +34,5 @@ cat target/dwca1/sequences.txt >> target/dwca1/sequencesHeader.txt && mv -f targ
 Run the conversions
 ```
 mkdir -p target/dwca2
-./clickhouse local \
-  --queries-file event.sql 
+./clickhouse local --queries-file process.sql 
 ```
