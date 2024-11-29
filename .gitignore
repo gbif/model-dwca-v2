@@ -1,3 +1,5 @@
 .DS_Store
 .idea
 ./material_gathering/conabio-agro/output_data/
+/citizen_science/svampeatlas/clickhouse
+/citizen_science/svampeatlas/target/
