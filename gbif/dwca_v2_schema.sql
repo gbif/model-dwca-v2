@@ -184,7 +184,7 @@ CREATE TABLE identification (
   identification_type_iri TEXT,
   identification_type_vocabulary TEXT,
   verbatim_identification TEXT,
-  is_accepted_identification BOOLEAN,
+  is_accepted_identification BOOLEAN DEFAULT TRUE,
   taxon_formula TEXT DEFAULT 'A' NOT NULL,
   type_status TEXT,
   type_designation_type TEXT,

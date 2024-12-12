@@ -697,7 +697,8 @@
                {
                   "name":"is_accepted_identification",
                   "titles":"isAcceptedIdentification",
-                  "datatype":"boolean"
+                  "datatype":"boolean",
+                  "default":true,
                },
                {
                   "name":"taxon_formula",
