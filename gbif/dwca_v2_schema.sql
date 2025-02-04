@@ -90,7 +90,7 @@ CREATE TABLE event (
   field_notes TEXT,
   event_citation TEXT,
   event_remarks TEXT,
-  protocol_id TEXT,
+  event_protocol_id TEXT,
   protocol_name TEXT,
   protocol_description TEXT,
   protocol_citation TEXT,

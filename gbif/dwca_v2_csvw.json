@@ -486,7 +486,7 @@
                   }
                },
                {
-                  "columnReference":"protocol_id",
+                  "columnReference":"event_protocol_id",
                   "reference":{
                      "resource":"protocol.csv",
                      "columnReference":"protocol_id"

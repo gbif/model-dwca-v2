@@ -467,7 +467,7 @@
                   }
                },
                {
-                  "fields":"protocol_id",
+                  "fields":"event_protocol_id",
                   "reference":{
                      "resource":"protocol",
                      "fields":"protocol_id"
